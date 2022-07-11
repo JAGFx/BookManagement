@@ -1,0 +1,18 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Hello RegistrationController!{% endblock %}
+
+{% block body %}
+<h1>
+    S'inscrire
+</h1>
+
+{{ form_start(form)}}
+
+{{ form_row(form.name , {'label': 'Name', 'attr' : {'placeholder' : 'Name'}})}}
+{{ form_row(form.password , {'label': 'Password', 'attr' : {'placeholder' : 'Mot de passe...'}})}}
+<button type="submit" class="btn btn-success"> Incription ! </button>
+
+{{ form_end(form)}}
+
+{% endblock %}
