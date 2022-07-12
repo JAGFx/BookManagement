@@ -16,7 +16,7 @@ class BookManagementController extends AbstractController
         ]);
     }
 
-    #[Route("/BookManagement", name: 'homeConnected')]
+    #[Route("/profile", name: 'homeConnected')]
     public function renderHome() {
         return $this->render('book_management/index.html.twig');
     }

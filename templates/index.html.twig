@@ -8,8 +8,10 @@
 
 <h3> Bienvenue sur <span> Library Management ! </span></h3>
 
-<a class="" href=" {{ path('app_login')}}"> <button type="button" class="btn btn-primary disabled"> </button>Connexion</a>
-<a class="" href=" {{ path('app_registration')}}"> <button type="button" class="btn btn-primary info"> </button>Inscription</a>
+<a class="btn btn-primary disabled" href="{{ path('app_login')}}" role="button">Connexion</a>
+<a class="btn btn-primary info" href="{{ path('app_login')}}" role="button">Inscription</a>
+
+
 
 </div>
 {% endblock %}

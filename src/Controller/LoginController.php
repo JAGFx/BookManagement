@@ -14,8 +14,15 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class LoginController extends AbstractController
 {
     #[Route('/login', name: 'app_login')]
-    public function login(){
-        return $this->render('login/index.html.twig');
+    public function login(AuthenticationUtils $authenticationUtils){
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        return $this->render('login/index.html.twig', [ 
+            'error' => $error,
+        ]);
+
+        
     }
     #[Route('/logout', name: 'app_logout')]
     public function logout(){
