@@ -1,13 +1,9 @@
 {% extends 'base2.html.twig' %}
 
-{% block title %}All Books{% endblock %}
+{% block title %}{{ book.title}} {% endblock %}
 
 {% block body %}
-<!-- 
-
-    For each book, display title, category, if is borrowed and a button to go to the book page
-
-
+<!-- Page to see the infos for a specified book
 -->
 
 <section class="articles">
@@ -18,28 +14,32 @@
             <th scope="col">Titre</th>
             <th scope="col">Catégorie</th>
             <th scope="col">Emprunté</th>
-            <th scope="col"></th>
+            <th scope="col">Emprunter</th>
+            <th scope="col">Retourner</th>
     
           </tr>
         </thead>
         <tbody>
-    {% for book in books %}
+
           <tr> 
             <td> {{ book.title}} </td>
             <td> {{ book.categorie}}</td>
             
-            <!-- If book is borrowed, then we display yes, or else no -->
+            <!-- If book is borrowed, then we display yes, or else no. If no, we can display a
+            button to borrow it -->
             {% if book.borrowed %}
             <td> Oui </td>
+            <td></td>
+            <td><a class="btn btn-primary" href="{{ path('borrow_return', {'id' : book.id }) }}" role="button">Retourner </a> 
+
             {% else %}
             <td>Non </td>
+            <td><a class="btn btn-primary" href="{{ path('borrow_book', {'id' : book.id }) }}" role="button">Emprunter </a> </td>
             {% endif %} 
+            <td></td>
 
-           
-            <td><a class="btn btn-primary" href="{{ path('book_show', {'id' : book.id }) }}" role="button">Voir plus </a> </td>
           </tr>
          
-    {% endfor %}
         </tbody>
     </table>
 
