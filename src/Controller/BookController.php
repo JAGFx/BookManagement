@@ -29,13 +29,34 @@ class BookController extends AbstractController
 
     // Show a book 
     #[Route("/book/{id}", name: 'book_show')]
-    public function show(Book $article, EntityManagerInterface $manager , Request $request, $id){
+    public function show(Book $book, EntityManagerInterface $manager , Request $request, $id){
         
         $repo = $manager->getRepository(Book::class);
         $book = $repo->find($id);
-        return $this->render('book/show.html.twig', [
-            'book' => $book,
-        ]);
+
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+        $userName = $user->getName();
+
+        // we need to check that the user is the borrower
+        $IdBorrower = $book->getUserId();
+        if($IdBorrower == $userName){
+            return $this->render('book/show.html.twig', [
+                'book' => $book,
+                'borrower' => true,
+            ]);
+
+        }
+        else{
+            return $this->render('book/show.html.twig', [
+                'book' => $book,
+                'borrower' => false,
+                
+            ]);
+        }
+
+
+        
 
     }
 
@@ -78,18 +99,35 @@ class BookController extends AbstractController
 
     }
 
-    // Display the borrow form
+    // Display the borrow form, only if the user is the borrower
     #[Route("/book/return/{id}", name: 'borrow_return')]
     public function RenderReturn(Book $book, EntityManagerInterface $manager, $id){
         
         $repo = $manager->getRepository(Book::class);
         $book = $repo->find($id);
 
-        return $this->render('book/return.html.twig', [
-            'book' => $book,
-            
-            
-        ]);
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+        $userName = $user->getName();
+
+        // we need to check that the user is the borrower
+        $IdBorrower = $book->getUserId();
+        if($IdBorrower == $userName){
+
+            return $this->render('book/return.html.twig', [
+                'book' => $book,
+                
+                
+            ]);
+
+        }
+
+        else{
+            return $this->redirectToRoute('book_show', ['id' => $book->getId()]);
+        }
+
+
+       
 
     }
     // method to actually borrow the book, then redirect to the book page
@@ -99,23 +137,30 @@ class BookController extends AbstractController
         // if not available, then the user can return it.
         if($book->isBorrowed()){
             // we get the user.
-
             /** @var \App\Entity\User $user */
             $user = $this->getUser();
-            
-            $user->removeBook($book);
+            $userName = $user->getName();
+
+            // we need to check that the user is the borrower
+            $IdBorrower = $book->getUserId();
+            if($IdBorrower == $userName){
+                $user->removeBook($book);
            
-            // the book borrow becomes unborrowed.
-            $book->setBorrowed(false);
+                // the book borrow becomes unborrowed.
+                $book->setBorrowed(false);
+    
+            
+                $manager->flush();
 
-        
-            $manager->flush();
-
+            }
+            
 
         }
         return $this->redirectToRoute('book_show', ['id' => $book->getId()]);
 
     }
+
+   
 
     
 

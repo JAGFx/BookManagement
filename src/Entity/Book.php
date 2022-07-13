@@ -26,6 +26,11 @@ class Book
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'books')]
     private $user_id;
 
+    public function __toString(): string
+    {
+      return $this->title;
+   }
+
     public function getId(): ?int
     {
         return $this->id;

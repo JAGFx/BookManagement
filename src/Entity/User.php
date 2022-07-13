@@ -30,6 +30,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Book::class)]
     private $books;
 
+    public function __toString(): string
+    {
+      return $this->name;
+   }
+
     public function __construct()
     {
         $this->books = new ArrayCollection();

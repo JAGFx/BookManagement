@@ -6,28 +6,9 @@
 
 <h3> Bienvenue {{ app.user.name }}</h3>
 
-<h5> Vos livres </h5>
-<table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">Titre</th>
-        <th scope="col">Auteur</th>
-        <th scope="col">Catégorie</th>
-        <th scope="col"> Retourner le livre</th>
-      </tr>
-    </thead>
-    <tbody>
-     
-      <tr>
-        
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td> <a class="btn btn-primary info" href="#" role="button"></a></td>
-      </tr>
-      
-    </tbody>
-  </table>
+
+<a class="btn btn-primary" href="{{ path('userProfil', {'id' : app.user.id })}}" role="button">Votre profil</a>
+
 
   <a class="btn btn-primary" href="{{ path('app_book')}}" role="button">Voir tous les livres</a>
 

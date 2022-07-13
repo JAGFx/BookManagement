@@ -30,7 +30,12 @@
             {% if book.borrowed %}
             <td> Oui </td>
             <td></td>
-            <td><a class="btn btn-primary" href="{{ path('borrow_return', {'id' : book.id }) }}" role="button">Retourner </a> 
+            <!-- If the user is the borrower, we can display the return button. -->
+              {% if borrower %}
+              <td><a class="btn btn-primary" href="{{ path('borrow_return', {'id' : book.id }) }}" role="button">Retourner </a> 
+                {% else %}
+                <td>  </td>
+              {% endif %} 
 
             {% else %}
             <td>Non </td>
