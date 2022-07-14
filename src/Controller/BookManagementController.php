@@ -17,7 +17,17 @@ class BookManagementController extends AbstractController
 
     #[Route("/", name: 'home')]
     public function home() {
-        return $this->render('index.html.twig');
+        // if user is connected, then the homePage will be homeConnected
+        /** @var \App\Entity\User $user */
+        if($this->getUser()){
+            return $this->redirectToRoute('homeConnected');
+
+        }
+        else{
+            return $this->render('index.html.twig');
+
+        }
+        
     }
 
     #[Route("/connected", name: 'homeConnected')]
