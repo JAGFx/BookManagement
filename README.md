@@ -42,6 +42,8 @@ Each user can have several books, but a book can only have one user.
 ## How does it work?
 ### First Page
 The arrival on the site is a page with two buttons: Connection and registration.
+![](pictures_Github/firstpage.png)
+
 
 ### Connected
 Once connected, we arrive on a page.
