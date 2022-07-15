@@ -69,3 +69,10 @@ On this page, you can see the information about each book, and you can click on 
 ## Technologies used
 To build this application, I used Symfony and Bootstrap.
 I also added an api via api platform.
+
+## What I learned from it ?
+
+I applied Symfony, with more specifically the understanding of an entity, a controller, and the Doctrine ORM.
+I also learned how to create a Back Office via EasyAdmin, and API Platform.
+
+Nevertheless, for my next projects, I plan to secure the access to the API and publish the application.
