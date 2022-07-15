@@ -55,18 +55,24 @@ Note the menu where we can navigate :
 - my books
 - logout
 
+![](pictures_Github/connected.png)
+
 ### My Books
 On this page, we visualize all our borrowed books.
 You can also click on "see more" to display the page of a book.
+
+![](pictures_Github/yourbooks.png)
 
 ### Book Page
 On this page, you can see the information of the book.
 If it is borrowed and you are the borrower, you can return it.
 If it is free, you can borrow it.
 
+![](pictures_Github/bookPage.png)
+
 ### All Books
 On this page, you can see the information about each book, and you can click on "see more" to display the book page.
-
+![](pictures_Github/allbooks.png)
 
 ## Technologies used
 To build this application, I used Symfony and Bootstrap.
