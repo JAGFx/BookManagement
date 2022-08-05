@@ -1,0 +1,15 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Book Management{% endblock %}
+
+{% block body %}
+
+<h3> Bienvenue {{ app.user.name }}</h3>
+
+
+<a class="btn btn-primary" href="{{ path('userProfil', {'id' : app.user.id })}}" role="button">Votre profil</a>
+
+
+  <a class="btn btn-primary" href="{{ path('app_book')}}" role="button">Voir tous les livres</a>
+
+{% endblock %}

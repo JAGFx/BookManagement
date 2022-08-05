@@ -1,0 +1,41 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %} Emprunter {{ book.title}} {% endblock %}
+
+{% block body %}
+<!-- Page to borrow  a specified book
+-->
+ <!-- If book is borrowed, then we display yes, or else no. If no, we can display a
+            button to borrow it -->
+           
+              
+<section class="articles">
+    <form action="{{ path('book_borrowed', {'id' : book.id })}}" method="post">
+    {% if not book.borrowed %}
+    <h5> Emprunter </h5>
+    <h6> Nom du livre : {{ book.title}}</h6>
+    <h6> Catégorie du livre : {{ book.categorie}}</h6>
+    <button type="submit" class="btn btn-primary"> Emprunter </button>
+    
+    </form>
+
+
+    {% else %}
+
+    <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Oh !</strong> <a href="#" class="alert-link">Vous tentez d'emprunter un livre déjà emprunté !
+      </div>
+
+    {% endif %} 
+
+
+</section>
+
+
+
+
+
+  
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}{{ book.title}} {% endblock %}
+
+{% block body %}
+<!-- Page to see the infos for a specified book
+-->
+
+<section class="articles">
+    <h5> Les livres </h5>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Titre</th>
+            <th scope="col">Catégorie</th>
+            <th scope="col">Emprunté</th>
+            <th scope="col">Emprunter</th>
+            <th scope="col">Retourner</th>
+    
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr> 
+            <td> {{ book.title}} </td>
+            <td> {{ book.categorie}}</td>
+            
+            <!-- If book is borrowed, then we display yes, or else no. If no, we can display a
+            button to borrow it -->
+            {% if book.borrowed %}
+            <td> Oui </td>
+            <td></td>
+            <!-- If the user is the borrower, we can display the return button. -->
+              {% if borrower %}
+              <td><a class="btn btn-primary" href="{{ path('borrow_return', {'id' : book.id }) }}" role="button">Retourner </a> 
+                {% else %}
+                <td>  </td>
+              {% endif %} 
+
+            {% else %}
+            <td>Non </td>
+            <td><a class="btn btn-primary" href="{{ path('borrow_book', {'id' : book.id }) }}" role="button">Emprunter </a> </td>
+            {% endif %} 
+            <td></td>
+
+          </tr>
+         
+        </tbody>
+    </table>
+
+</section>
+
+
+
+
+
+  
+
+{% endblock %}

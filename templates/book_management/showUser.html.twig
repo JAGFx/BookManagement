@@ -1,0 +1,46 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Book Management{% endblock %}
+
+{% block body %}
+
+<h3> Bienvenue {{ app.user.name }}</h3>
+
+<h5> Vos livres </h5>
+<section class="articles">
+  <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Titre</th>
+          <th scope="col">Catégorie</th>
+          <th scope="col">Emprunté</th>
+          <th scope="col"></th>
+  
+        </tr>
+      </thead>
+      <tbody>
+  {% for book in books %}
+        <tr> 
+          <td> {{ book.title}} </td>
+          <td> {{ book.categorie}}</td>
+          
+          <!-- If book is borrowed, then we display yes, or else no -->
+          {% if book.borrowed %}
+          <td> Oui </td>
+          {% else %}
+          <td>Non </td>
+          {% endif %} 
+
+         
+          <td><a class="btn btn-primary" href="{{ path('book_show', {'id' : book.id }) }}" role="button">Voir plus </a> </td>
+        </tr>
+       
+  {% endfor %}
+      </tbody>
+  </table>
+
+</section>
+
+  <a class="btn btn-primary" href="{{ path('app_book')}}" role="button">Voir tous les livres</a>
+
+{% endblock %}
