@@ -1,0 +1,38 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %} Retourner {{ book.title}} {% endblock %}
+
+{% block body %}
+<!-- Page to return  a specified book
+-->
+               
+<section class="articles">
+    <form action="{{ path('book_returned', {'id' : book.id })}}" method="post">
+    {% if  book.borrowed %}
+    <h5> Retourner </h5>
+    <h6> Nom du livre : {{ book.title}}</h6>
+    <h6> Catégorie du livre : {{ book.categorie}}</h6>
+    <button type="submit" class="btn btn-primary"> Retourner </button>
+    
+    </form>
+
+
+    {% else %}
+
+    <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Oh !</strong> <a href="#" class="alert-link">Vous tentez de retourner un livre non emprunté !
+      </div>
+
+    {% endif %} 
+
+
+</section>
+
+
+
+
+
+  
+
+{% endblock %}
